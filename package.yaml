@@ -1,0 +1,54 @@
+name:                cloud-verification-tool
+version:             0.1.0.0
+github:              "your-github-username/cloud-verification-tool"
+license:             MIT
+author:              "Your Name"
+maintainer:          "your-email@example.com"
+synopsis:            "A formal verification tool for cloud infrastructure using Haskell and Lean"
+category:            DevOps
+
+dependencies:
+  - base >= 4.7 && < 5
+  - aeson
+  - aeson-pretty
+  - text
+  - bytestring
+  - containers
+  - unordered-containers  # Add this line
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Types
+    - Parser
+    - CodeGen
+  language: Haskell2010
+
+executables:
+  cloud-verification-tool:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+    language:    Haskell2010
+    dependencies:
+      - cloud-verification-tool
+
+# Remove or comment out the tests section if not using tests
+# tests:
+#   cloud-verification-tool-test:
+#     main:                Spec.hs
+#     source-dirs:         test
+#     ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+#     type:                exitcode-stdio-1.0
+#     language:    Haskell2010
+#     dependencies:
+#       - cloud-verification-tool
+#       - hspec
+
+extra-source-files:
+  - README.md
+  - CHANGELOG.md
+
+description: |
+  A tool that parses Terraform plans, translates them into a formal representation, and uses Lean to formally verify properties such as correctness, security compliance, and best practices.
+
